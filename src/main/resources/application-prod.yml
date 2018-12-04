@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    custom:
+      sys:
+        url: jdbc:mysql://172.16.35.52:3306/whale?allowMultiQueries=true&userUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: whale
+        password: htwater
+      data:
+        url: jdbc:mysql://59.202.59.187:3306/ht_rw?allowMultiQueries=true&userUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+        driverClassName: com.mysql.cj.jdbc.Driver
+        username: ht_center
+        password: htwater_zjzwy
+    druid:
+      initial-size: 10
+      max-active: 100
+      min-idle: 10
+      filters: stat
+        filter:
+         stat:
+         log-slow-sql: true
+         slow-sql-millis: 100
+         merge-sql: true
+         enabled: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
